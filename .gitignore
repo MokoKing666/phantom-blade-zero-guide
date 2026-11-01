@@ -1,0 +1,16 @@
+node_modules/
+dist/
+dist-ssr/
+coverage/
+playwright-report/
+test-results/
+src/generated/
+.vite/
+*.tsbuildinfo
+docs/ts-files-report.json
+.DS_Store
+Thumbs.db
+.env
+.env.local
+public/licensed/*
+!public/licensed/.gitkeep

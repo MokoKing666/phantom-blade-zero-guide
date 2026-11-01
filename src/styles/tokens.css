@@ -1,0 +1,98 @@
+/* ============================================================
+   设计 Token — 基于 apple-marketing-design 的 assets/apple-tokens.css
+   扩展点：暗色为主基调、单一强调色。
+   规则：间距只用 4 的倍数；clamp() 仅用于字号，不用于间距。
+   ============================================================ */
+
+:root {
+  /* ---------- 中性色 ---------- */
+  --ap-black: #000000;
+  --ap-bg-dark: #171918;
+  --ap-ink: #1d1d1f;
+  --ap-ink-2: #6c6b6f;
+  --ap-ink-3: #86868b;
+  --ap-line: #d2d2d7;
+  --ap-bg-light: #f5f5f7;
+  --ap-bg-light-2: #f6f5f8;
+  --ap-white: #ffffff;
+
+  /* ---------- 单一强调色（取自规范色板「力量红」） ---------- */
+  --ap-accent: #db404d;
+  --ap-accent-ink: #ff5c68;
+
+  /* ---------- 字重：只用三档 ---------- */
+  --w-light: 300;
+  --w-regular: 400;
+  --w-semibold: 600;
+
+  /* ---------- 字体族 ---------- */
+  --font-sans: "PBZ Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "HarmonyOS Sans SC", "Source Han Sans SC", "Noto Sans SC",
+    "Microsoft YaHei", sans-serif;
+
+  /* ---------- 字号阶梯（clamp 仅用于字号） ---------- */
+  --fs-hero: clamp(44px, 7.2vw, 96px);
+  --fs-h1: clamp(34px, 4.6vw, 72px);
+  --fs-h2: clamp(26px, 3.2vw, 48px);
+  --fs-data: clamp(28px, 3vw, 40px);
+  --fs-sub: clamp(19px, 2vw, 28px);
+  --fs-body: clamp(16px, 1.5vw, 22px);
+  --fs-note: 16px;
+  --fs-label: 13px;
+
+  /* ---------- 行距 ---------- */
+  --lh-tight: 1.1;
+  --lh-title: 1.2;
+  --lh-air: 1.5;
+  --lh-read: 1.8;
+
+  /* ---------- 间距：全部 4 的倍数 ---------- */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 40px;
+  --s8: 64px;
+  --s9: 96px;
+
+  /* ---------- 圆角：短边 × 18%（见 docs/DESIGN-AUDIT.md 映射表） ---------- */
+  --r-sm: 12px;
+  --r-md: 24px;
+  --r-lg: 40px;
+  --r-xl: 56px;
+  --r-hero: 88px;
+  --r-pill: 999px;
+
+  /* ---------- 页边距：断点覆盖，全部 4 倍数 ---------- */
+  --pad-page: 16px;
+
+  /* ---------- 内容宽度 ---------- */
+  --measure: 72ch;
+  --shell-max: 1440px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --pad-page: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --pad-page: 40px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --pad-page: 64px;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --pad-page: 96px;
+  }
+}

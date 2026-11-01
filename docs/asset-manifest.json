@@ -1,0 +1,37 @@
+{
+  "$comment": "素材清单。每个被站点引用的媒体文件必须在此登记，license 非空。未登记的文件会被 scripts/verify-assets.mjs 拦截。",
+  "version": 1,
+  "assets": [
+    {
+      "path": "public/favicon.svg",
+      "kind": "icon",
+      "origin": "original",
+      "license": "本站原创，随项目以 MIT 发布",
+      "source": "本项目自绘（刃形切口 + 负空间），与任何游戏官方标识无关"
+    },
+    {
+      "path": "src/assets/fonts/MiSans-Light.woff2",
+      "kind": "font",
+      "origin": "third-party",
+      "license": "MiSans 字体许可协议（免费商用，允许嵌入，禁止再分发字体包）",
+      "source": "小米 MiSans 官方字体文件，版本 4.009；来源已由项目所有者确认",
+      "note": "不得 subset，不得单独提供下载"
+    },
+    {
+      "path": "src/assets/fonts/MiSans-Regular.woff2",
+      "kind": "font",
+      "origin": "third-party",
+      "license": "MiSans 字体许可协议（免费商用，允许嵌入，禁止再分发字体包）",
+      "source": "小米 MiSans 官方字体文件，版本 4.009；来源已由项目所有者确认",
+      "note": "唯一预载字重"
+    },
+    {
+      "path": "src/assets/fonts/MiSans-Semibold.woff2",
+      "kind": "font",
+      "origin": "third-party",
+      "license": "MiSans 字体许可协议（免费商用，允许嵌入，禁止再分发字体包）",
+      "source": "小米 MiSans 官方字体文件，版本 4.009；来源已由项目所有者确认",
+      "note": "不得 subset，不得单独提供下载"
+    }
+  ]
+}

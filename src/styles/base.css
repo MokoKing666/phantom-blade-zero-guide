@@ -1,0 +1,357 @@
+/* ============================================================
+   基础样式
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--ap-white);
+  color: var(--ap-ink);
+  font-family: var(--font-sans);
+  font-weight: var(--w-regular);
+  font-size: var(--fs-body);
+  line-height: var(--lh-read);
+  /* 防止浏览器合成假 300/600 */
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: var(--w-semibold);
+  line-height: var(--lh-title);
+  letter-spacing: -0.02em;
+  color: var(--ap-ink);
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-sub);
+}
+
+p {
+  margin: 0 0 var(--s5);
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--ap-line);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration-color: var(--ap-accent);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ap-accent);
+  outline-offset: 2px;
+}
+
+ul,
+ol {
+  margin: 0 0 var(--s5);
+  padding-left: var(--s5);
+}
+
+/* ---------- 布局骨架 ---------- */
+
+.shell {
+  width: 100%;
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding-inline: var(--pad-page);
+}
+
+.section {
+  padding-block: var(--s8);
+}
+
+.section--dark {
+  background: var(--ap-bg-dark);
+  color: var(--ap-white);
+}
+
+.section--dark h1,
+.section--dark h2,
+.section--dark h3 {
+  color: var(--ap-white);
+}
+
+.section--gray {
+  background: var(--ap-bg-light);
+}
+
+/* ---------- 排版工具类 ---------- */
+
+.hero-title {
+  font-size: var(--fs-hero);
+  font-weight: var(--w-semibold);
+  line-height: var(--lh-title);
+  letter-spacing: -0.02em;
+}
+
+.hl {
+  color: var(--ap-accent);
+}
+
+.label {
+  display: block;
+  font-size: var(--fs-label);
+  font-weight: var(--w-regular);
+  letter-spacing: 0.08em;
+  color: var(--ap-ink-3);
+  margin-bottom: var(--s2);
+}
+
+.section--dark .label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.note {
+  font-size: var(--fs-note);
+  line-height: var(--lh-air);
+  color: var(--ap-ink-3);
+}
+
+.lead {
+  font-size: var(--fs-sub);
+  font-weight: var(--w-light);
+  line-height: var(--lh-air);
+  color: var(--ap-ink-2);
+}
+
+.data-value {
+  display: block;
+  font-size: var(--fs-data);
+  font-weight: var(--w-semibold);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.01em;
+}
+
+.data-unit {
+  font-size: 0.5em;
+  font-weight: var(--w-regular);
+  margin-left: 0.15em;
+}
+
+/* ---------- 刃切分割线 ---------- */
+
+.blade-rule {
+  position: relative;
+  height: 1px;
+  background: var(--ap-line);
+  margin-block: var(--s7);
+}
+
+.blade-rule::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--ap-line);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.section--dark .blade-rule,
+.section--dark .blade-rule::after {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* ---------- 编号栏 ---------- */
+
+.number-rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  font-size: var(--fs-label);
+  letter-spacing: 0.08em;
+  color: var(--ap-ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.number-rail__item[aria-current="page"] {
+  color: var(--ap-accent);
+}
+
+/* ---------- 按钮 ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: 44px;
+  padding: var(--s3) var(--s5);
+  border-radius: var(--r-pill);
+  border: 1px solid var(--ap-line);
+  background: transparent;
+  font-size: var(--fs-note);
+  font-weight: var(--w-regular);
+  text-decoration: none;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.btn:hover {
+  border-color: var(--ap-ink);
+}
+
+.btn--primary {
+  background: var(--ap-accent);
+  border-color: var(--ap-accent);
+  color: var(--ap-white);
+}
+
+.btn--primary:hover {
+  background: var(--ap-accent-ink);
+  border-color: var(--ap-accent-ink);
+}
+
+.section--dark .btn {
+  border-color: rgba(255, 255, 255, 0.32);
+  color: var(--ap-white);
+}
+
+.section--dark .btn--primary {
+  border-color: var(--ap-accent);
+  color: var(--ap-white);
+}
+
+/* ---------- 卡片 ---------- */
+
+.card {
+  border-radius: var(--r-lg);
+  padding: var(--s6);
+  background: var(--ap-white);
+}
+
+.card--gray {
+  background: var(--ap-bg-light);
+}
+
+.card--dark {
+  background: var(--ap-black);
+  color: var(--ap-white);
+}
+
+/* ---------- 网格 ---------- */
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s5) var(--s4);
+}
+
+.bento__hero {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.bento__wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 1023px) {
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .bento {
+    grid-template-columns: 1fr;
+  }
+
+  .bento__hero,
+  .bento__wide {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+/* ---------- 左文右数 ---------- */
+
+.split {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--s7);
+  align-items: start;
+}
+
+@media (max-width: 767px) {
+  .split {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+}
+
+.split__data {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s5);
+}
+
+/* ---------- 跳转主内容（无障碍） ---------- */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: var(--s3) var(--s5);
+  background: var(--ap-ink);
+  color: var(--ap-white);
+}
+
+.skip-link:focus {
+  left: var(--s4);
+  top: var(--s4);
+}

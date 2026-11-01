@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Apple Marketing Design Language · 参考实现</title>
+<link rel="stylesheet" href="apple-tokens.css">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #d2d2d7;
+    font-family: var(--ap-font);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 1080px;
+    margin: 0 auto;
+    background: var(--ap-white);
+  }
+
+  .block { padding: 96px 76px; }
+  .block--tight { padding: 64px 76px; }
+
+  /* ---------- 1. Hero ---------- */
+  .hero {
+    background: var(--ap-bg-dark);
+    color: var(--ap-white);
+    padding: 96px 76px 0;
+    overflow: hidden;
+  }
+  .hero__eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    color: rgba(255,255,255,.45);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .hero__title {
+    font-size: 88px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    text-align: center;
+    margin: 0 0 24px;
+  }
+  .hero__title em {
+    font-style: normal;
+    background: linear-gradient(90deg,#f6d3bd,#cc9cd7 40%,#8a9aff 72%,#a2daff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero__sub {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(255,255,255,.62);
+    text-align: center;
+    margin: 0 auto 64px;
+    max-width: 30em;
+  }
+
+  /* 设备剪影：用纯 CSS 表现"薄" */
+  .device {
+    width: 320px;
+    height: 420px;
+    margin: 0 auto -48px;
+    border-radius: 56px;
+    background: linear-gradient(150deg,#3a3a3e 0%,#111113 42%,#2b2b30 100%);
+    box-shadow: 0 40px 120px rgba(0,0,0,.7),
+                inset 0 0 0 1px rgba(255,255,255,.22),
+                inset 0 1px 0 rgba(255,255,255,.45);
+    position: relative;
+  }
+  .device::after {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border-radius: 44px;
+    background: linear-gradient(160deg,#1b1b1f,#0a0a0c 60%,#24242a);
+  }
+
+  /* ---------- 2. Bento ---------- */
+  .sec-head { margin-bottom: 64px; }
+  .sec-head .ap-label { margin-bottom: 16px; }
+  .sec-head h2 {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .sec-head p {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--ap-ink-2);
+    margin: 24px 0 0;
+    max-width: 26em;
+  }
+
+  .bento { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px 16px; }
+
+  .cell {
+    border-radius: 40px;
+    padding: 32px;
+    background: var(--ap-bg-light);
+    min-height: 176px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    position: relative;
+  }
+  .cell--hero {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: var(--ap-bg-light);
+    padding: 40px;
+    min-height: 376px;
+  }
+  .cell--hero .cell__title { font-size: 36px; }
+  .cell--dark .cell__title { font-size: 22px; }
+  .cell--dark { background: var(--ap-black); color: var(--ap-white); }
+  .cell--dark .cell__note { color: rgba(255,255,255,.55); }
+
+  .cell__kicker {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--ap-ink-3);
+    margin-bottom: 8px;
+  }
+  .cell__title {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .cell__note {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--ap-ink-2);
+    margin: 8px 0 0;
+  }
+  .cell__num {
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .cell__num span { font-size: 20px; font-weight: 400; margin-left: 8px; }
+
+  .panel {
+    border-radius: 32px;
+    background: linear-gradient(150deg,#f0f0f4,#dcdce2);
+    height: 168px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .panel::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%) rotate(-8deg);
+    width: 210px;
+    height: 118px;
+    border-radius: 22px;
+    background: linear-gradient(160deg,#ffffff,#c9c9d2);
+    box-shadow: 0 18px 44px rgba(0,0,0,.14);
+  }
+
+  /* ---------- 3. 左文右数 ---------- */
+  .split-sec { background: var(--ap-white); }
+  .split {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .split__story h2 {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+  }
+  .split__story p {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ap-ink-2);
+    margin: 0;
+    max-width: 20em;
+  }
+  .split__data { display: flex; flex-direction: column; gap: 40px; padding-right: 40px; }
+  .stat__num {
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .stat__label {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--ap-ink-3);
+  }
+
+  /* ---------- 4. 深色数据墙 ---------- */
+  .wall {
+    background: var(--ap-bg-dark);
+    color: var(--ap-white);
+    padding: 96px 76px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .wall__item { padding: 32px; border-radius: 32px; background: var(--ap-black); }
+  .wall__item .cell__num { color: var(--ap-white); }
+  .wall__item .stat__label { color: rgba(255,255,255,.5); }
+
+  /* ---------- 5. 卡片拼贴 ---------- */
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .tile {
+    border-radius: 40px;
+    padding: 40px 32px;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: var(--ap-white);
+  }
+  .tile--a { background: linear-gradient(155deg,#147d89,#0b4f57); }
+  .tile--b { background: linear-gradient(155deg,#db404d,#8a1f2a); }
+  .tile--c { background: linear-gradient(155deg,#6c41e6,#2b1a6b); }
+  .tile h3 {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .tile p { font-size: 15px; font-weight: 300; line-height: 1.5; margin: 0; opacity: .72; }
+
+  /* ---------- 6. 收尾 ---------- */
+  .foot {
+    padding: 96px 76px;
+    text-align: center;
+    background: var(--ap-white);
+  }
+  .foot h2 {
+    font-size: 72px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin: 0 0 24px;
+  }
+  .foot p { font-size: 16px; color: var(--ap-ink-3); margin: 0; line-height: 1.8; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 1 -->
+  <section class="hero">
+    <div class="hero__eyebrow">LUMEN X</div>
+    <h1 class="hero__title">薄一点，<em>装下全部。</em></h1>
+    <p class="hero__sub">5.9 毫米机身，48 小时续航。所有取舍，都做完了。</p>
+    <div class="device"></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="block">
+    <div class="sec-head">
+      <span class="ap-label">设计</span>
+      <h2>每一面，<span style="color:#147d89">都不将就。</span></h2>
+      <p>把厚度压到极限，把结构做到极简。剩下的，交给材料。</p>
+    </div>
+
+    <div class="bento">
+      <div class="cell cell--hero">
+        <div class="panel"></div>
+        <div>
+          <div class="cell__kicker">显示屏</div>
+          <h3 class="cell__title">6.9 英寸，铺满整面。</h3>
+          <p class="cell__note">边框窄到 1.2 毫米，四边等宽。</p>
+        </div>
+      </div>
+
+      <div class="cell cell--dark">
+        <div class="cell__num">48<span>小时</span></div>
+        <p class="cell__note">连续视频播放</p>
+      </div>
+
+      <div class="cell">
+        <div class="cell__num">5.9<span>毫米</span></div>
+        <p class="cell__note">机身厚度</p>
+      </div>
+
+      <div class="cell">
+        <div class="cell__num">32<span>克</span></div>
+        <p class="cell__note">比上一代更轻</p>
+      </div>
+
+      <div class="cell cell--dark">
+        <div class="cell__kicker">材质</div>
+        <h3 class="cell__title">钛金属，<br>更硬也更轻。</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="block split-sec">
+    <div class="split">
+      <div class="split__story">
+        <span class="ap-label">续航</span>
+        <h2>一整天，<br>不用找插座。</h2>
+        <p>新一代电池架构，把能量密度提上去，把充电时间压下来。</p>
+      </div>
+      <div class="split__data">
+        <div class="stat">
+          <span class="stat__num">48 小时</span>
+          <span class="stat__label">连续视频播放时间</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num">20 分钟</span>
+          <span class="stat__label">充至 50% 电量</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="wall">
+    <div class="wall__item">
+      <div class="cell__num">3<span>纳米</span></div>
+      <p class="stat__label">制程工艺</p>
+    </div>
+    <div class="wall__item">
+      <div class="cell__num">40<span>%</span></div>
+      <p class="stat__label">图形性能提升</p>
+    </div>
+    <div class="wall__item">
+      <div class="cell__num">120<span>Hz</span></div>
+      <p class="stat__label">自适应刷新率</p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="block--tight">
+    <div class="tiles">
+      <div class="tile tile--a">
+        <h3>一开盖，<br>就连上了。</h3>
+        <p>配件自动配对，开盖即用。</p>
+      </div>
+      <div class="tile tile--b">
+        <h3>随手一拍，<br>就是大片。</h3>
+        <p>4800 万像素主摄。</p>
+      </div>
+      <div class="tile tile--c">
+        <h3>跑起来，<br>没脾气。</h3>
+        <p>M 级芯片，全程满血。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="foot">
+    <h2>Ready to use.</h2>
+    <p>本页为 apple-marketing-design 技能的参考实现。<br>所有数值取自规范，可直接替换内容复用。</p>
+  </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+/* ============================================================
+   统一入口 CSS。
+   本项目采用「统一 CSS」方案：所有样式由本文件聚合为单一入口 CSS，
+   地图页的 JS 仍为独立 chunk（React.lazy）。
+   不变量：任何非入口 chunk 都不得产生独立 CSS（verify-dist 断言）。
+   ============================================================ */
+
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./base.css";
+@import "./layout.css";
+@import "./prose.css";
+@import "./map.css";

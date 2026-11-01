@@ -1,0 +1,193 @@
+/* ============================================================
+   正文排版（攻略页 / 图鉴页）
+   信息密度优先：正文 400 / 1.8 行距；小标题用 600 分层，不用加粗强调。
+   ============================================================ */
+
+.prose {
+  max-width: var(--measure);
+  font-size: var(--fs-body);
+  font-weight: var(--w-regular);
+  line-height: var(--lh-read);
+  color: var(--ap-ink-2);
+}
+
+.prose > * + * {
+  margin-top: var(--s5);
+}
+
+.prose h2 {
+  margin-top: var(--s8);
+  font-size: var(--fs-h2);
+  color: var(--ap-ink);
+}
+
+.prose h3 {
+  margin-top: var(--s7);
+  font-size: var(--fs-sub);
+  color: var(--ap-ink);
+}
+
+.prose strong {
+  font-weight: var(--w-semibold);
+  color: var(--ap-ink);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: var(--s5);
+}
+
+.prose li + li {
+  margin-top: var(--s2);
+}
+
+.prose blockquote {
+  margin: var(--s6) 0;
+  padding-left: var(--s5);
+  border-left: 1px solid var(--ap-line);
+  color: var(--ap-ink-3);
+}
+
+.prose code {
+  font-size: 0.9em;
+  padding: 2px 4px;
+  border-radius: var(--r-sm);
+  background: var(--ap-bg-light);
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-note);
+}
+
+.prose th,
+.prose td {
+  padding: var(--s3) var(--s4);
+  border-bottom: 1px solid var(--ap-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th {
+  font-weight: var(--w-semibold);
+  color: var(--ap-ink);
+}
+
+/* ---------- 剧透折叠 ---------- */
+
+.spoiler {
+  margin: var(--s6) 0;
+  border: 1px solid var(--ap-line);
+  border-radius: var(--r-md);
+  padding: var(--s4) var(--s5);
+  background: var(--ap-bg-light-2);
+}
+
+.spoiler > summary {
+  cursor: pointer;
+  font-weight: var(--w-semibold);
+  color: var(--ap-ink);
+  list-style: none;
+}
+
+.spoiler > summary::-webkit-details-marker {
+  display: none;
+}
+
+.spoiler > summary::before {
+  content: "剧透 · ";
+  color: var(--ap-accent);
+  font-weight: var(--w-semibold);
+}
+
+.spoiler[open] > summary {
+  margin-bottom: var(--s4);
+}
+
+/* ---------- 来源与核验块 ---------- */
+
+.sources {
+  margin-top: var(--s8);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--ap-line);
+  font-size: var(--fs-note);
+  color: var(--ap-ink-3);
+}
+
+.sources h2 {
+  font-size: var(--fs-note);
+  letter-spacing: 0.08em;
+  color: var(--ap-ink-3);
+  margin-bottom: var(--s3);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s1);
+  padding: 2px var(--s2);
+  border-radius: var(--r-pill);
+  font-size: var(--fs-label);
+  line-height: 1.6;
+  border: 1px solid var(--ap-line);
+  color: var(--ap-ink-2);
+}
+
+.badge--verified {
+  border-color: var(--ap-accent);
+  color: var(--ap-accent);
+}
+
+.badge--disputed {
+  border-color: var(--ap-ink);
+  color: var(--ap-ink);
+}
+
+/* ---------- 目录 ---------- */
+
+.toc {
+  position: sticky;
+  top: var(--s6);
+  align-self: start;
+  font-size: var(--fs-note);
+  color: var(--ap-ink-3);
+}
+
+.toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc li + li {
+  margin-top: var(--s2);
+}
+
+.toc a {
+  text-decoration: none;
+}
+
+.toc a:hover {
+  color: var(--ap-ink);
+}
+
+/* ---------- 三栏版式 ---------- */
+
+.doc-layout {
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr) 200px;
+  gap: var(--s7);
+  align-items: start;
+}
+
+@media (max-width: 1279px) {
+  .doc-layout {
+    grid-template-columns: 1fr;
+    gap: var(--s5);
+  }
+
+  .toc {
+    position: static;
+  }
+}

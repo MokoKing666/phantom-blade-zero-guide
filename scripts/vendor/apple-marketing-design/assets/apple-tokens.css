@@ -1,0 +1,301 @@
+/* ============================================================
+   Apple Marketing Design Language — Design Tokens
+   用法：<link rel="stylesheet" href="design-tokens.css">
+   或直接复制 :root 变量到样式表顶部
+   ============================================================ */
+
+:root {
+  /* ---------- 中性色 ---------- */
+  --ap-black: #000000;
+  --ap-bg-dark: #171918;      /* 黑底页面底色，不用纯黑 */
+  --ap-ink: #1d1d1f;          /* 标题 / 主文字 */
+  --ap-ink-2: #6c6b6f;        /* 副文案 */
+  --ap-ink-3: #86868b;        /* 注释 / 单位 */
+  --ap-line: #d2d2d7;         /* 1px 分隔线 */
+  --ap-bg-light: #f5f5f7;     /* 浅灰区块底 */
+  --ap-bg-light-2: #f6f5f8;   /* 微紫灰底 */
+  --ap-white: #ffffff;
+
+  /* ---------- 强调色（一版只用一个） ---------- */
+  --ap-accent-eco: #147d89;
+  --ap-accent-power: #db404d;
+  --ap-accent-eco-green: #42a288;
+  --ap-accent-tech: #0031ea;
+  --ap-accent-perf: #6c41e6;
+
+  /* ---------- 字体 ---------- */
+  --ap-font: "SF Pro Display", "SF Pro Text", -apple-system, "PingFang SC",
+             "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+
+  --ap-w-light: 300;
+  --ap-w-regular: 400;
+  --ap-w-semibold: 600;
+
+  /* ---------- 字号阶梯（1080 宽画布） ---------- */
+  --ap-fs-hero: 96px;
+  --ap-fs-h1: 72px;
+  --ap-fs-h2: 48px;
+  --ap-fs-data: 40px;
+  --ap-fs-sub: 28px;
+  --ap-fs-body: 22px;
+  --ap-fs-note: 16px;
+  --ap-fs-label: 13px;
+
+  /* ---------- 行距 ---------- */
+  --ap-lh-tight: 1.1;
+  --ap-lh-title: 1.2;
+  --ap-lh-air: 1.5;    /* 配 Light 300 */
+  --ap-lh-read: 1.8;   /* 配 Regular 400 */
+
+  /* ---------- 间距：4 倍数体系 ---------- */
+  --ap-s-1: 4px;
+  --ap-s-2: 8px;
+  --ap-s-3: 12px;
+  --ap-s-4: 16px;    /* 横向卡片间距，固定 */
+  --ap-s-5: 24px;    /* 纵向卡片间距 / 段间距 */
+  --ap-s-6: 32px;
+  --ap-s-7: 40px;    /* 模块间距下限 */
+  --ap-s-8: 64px;
+  --ap-s-9: 96px;
+
+  /* ---------- 圆角：短边 × 18%，此处按常见尺寸预置 ---------- */
+  --ap-r-sm: 12px;    /* 64px 级小卡 */
+  --ap-r-md: 24px;    /* 132px 级 */
+  --ap-r-lg: 40px;    /* 220px 级 */
+  --ap-r-xl: 56px;    /* 310px 级 */
+  --ap-r-hero: 88px;  /* 480px 级主格 */
+  --ap-r-pill: 999px;
+
+  /* ---------- 布局 ---------- */
+  --ap-pad-page: 7%;          /* 页边距 6–8% */
+  --ap-gap-x: var(--ap-s-4);  /* 横向 16pt 固定 */
+  --ap-gap-y: var(--ap-s-5);  /* 纵向 16 或 24pt */
+}
+
+/* ============================================================
+   基础
+   ============================================================ */
+
+.ap-canvas {
+  width: 1080px;
+  margin: 0 auto;
+  padding: var(--ap-pad-page);
+  background: var(--ap-white);
+  color: var(--ap-ink);
+  font-family: var(--ap-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+.ap-canvas--dark {
+  background: var(--ap-bg-dark);
+  color: var(--ap-white);
+}
+
+/* ============================================================
+   排版
+   ============================================================ */
+
+.ap-hero {
+  font-size: var(--ap-fs-hero);
+  font-weight: var(--ap-w-semibold);
+  line-height: var(--ap-lh-title);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.ap-h2 {
+  font-size: var(--ap-fs-h2);
+  font-weight: var(--ap-w-semibold);
+  line-height: var(--ap-lh-title);
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--ap-s-5);
+}
+
+.ap-sub {
+  font-size: var(--ap-fs-sub);
+  font-weight: var(--ap-w-regular);
+  line-height: var(--ap-lh-air);
+  color: var(--ap-ink-2);
+  margin: 0 0 var(--ap-s-5);
+}
+
+/* 信息型正文：400 + 1.8 */
+.ap-body {
+  font-size: var(--ap-fs-body);
+  font-weight: var(--ap-w-regular);
+  line-height: var(--ap-lh-read);
+  color: var(--ap-ink-2);
+  margin: 0;
+}
+
+/* 氛围型正文：300 + 1.5 */
+.ap-body--air {
+  font-weight: var(--ap-w-light);
+  line-height: var(--ap-lh-air);
+  color: var(--ap-ink-2);
+}
+
+.ap-label {
+  display: block;
+  font-size: var(--ap-fs-label);
+  font-weight: var(--ap-w-regular);
+  letter-spacing: 0.08em;
+  color: var(--ap-ink-3);
+  margin-bottom: var(--ap-s-2);
+}
+
+.ap-note {
+  font-size: var(--ap-fs-note);
+  font-weight: var(--ap-w-regular);
+  line-height: 1.5;
+  color: var(--ap-ink-3);
+}
+
+/* 数据数字 */
+.ap-data {
+  display: block;
+  font-size: var(--ap-fs-data);
+  font-weight: var(--ap-w-semibold);
+  line-height: var(--ap-lh-tight);
+  letter-spacing: -0.01em;
+  color: var(--ap-ink);
+}
+
+.ap-data__unit {
+  font-size: 0.5em;
+  font-weight: var(--ap-w-regular);
+  margin-left: 0.15em;
+}
+
+/* ============================================================
+   半边上色（核心）
+   用法：<h2 class="fd-h2">机身小，<span class="fd-hl">本事大。</span></h2>
+   ============================================================ */
+
+.ap-hl {
+  color: var(--ap-accent-eco);
+}
+
+.ap-hl--power { color: var(--ap-accent-power); }
+.ap-hl--tech  { color: var(--ap-accent-tech); }
+.ap-hl--perf  { color: var(--ap-accent-perf); }
+.ap-hl--green { color: var(--ap-accent-eco-green); }
+
+/* 渐变字：仅用于 ≥40px 的产品名 / 关键词 */
+.ap-hl--grad {
+  background: linear-gradient(90deg, #eca9ff 0%, #bf67ff 45%, #a2daff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.ap-hl--grad-b {
+  background: linear-gradient(90deg, #f6d3bd 0%, #cc9cd7 35%, #8a9aff 70%, #a2daff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ============================================================
+   左文右数结构
+   ============================================================ */
+
+.ap-split {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;  /* 约 6:4，右侧留白不填满 */
+  gap: var(--ap-s-7);
+  align-items: start;
+}
+
+.ap-split__story .ap-h2 {
+  margin-bottom: var(--ap-s-5);   /* 段间距 24pt */
+}
+
+.ap-split__story .ap-body--air {
+  line-height: var(--ap-lh-title); /* 1.2 行距 */
+  max-width: 34ch;
+}
+
+.ap-split__data {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ap-s-5);
+  padding-right: var(--ap-s-7);    /* 右侧留白空间 */
+}
+
+/* ============================================================
+   便当盒网格
+   ============================================================ */
+
+.ap-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--ap-gap-y) var(--ap-gap-x);  /* 纵 24 / 横 16 */
+}
+
+.ap-bento__hero {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.ap-bento__wide {
+  grid-column: span 2;
+}
+
+.ap-card {
+  position: relative;
+  border-radius: var(--ap-r-lg);
+  padding: var(--ap-s-6);
+  background: var(--ap-white);
+  overflow: hidden;
+}
+
+.ap-card--gray { background: var(--ap-bg-light); }
+.ap-card--dark { background: var(--ap-black); color: var(--ap-white); }
+.ap-card--dark .ap-body,
+.ap-card--dark .ap-note { color: rgba(255, 255, 255, 0.72); }
+.ap-card--dark .ap-h2,
+.ap-card--dark .ap-data { color: var(--ap-white); }
+
+.ap-bento__hero .ap-card { border-radius: var(--ap-r-hero); }
+
+/* ============================================================
+   图片
+   ============================================================ */
+
+.ap-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;   /* 图片圆角 = 卡片圆角 */
+  object-fit: cover;
+}
+
+.ap-media--bleed {
+  width: 100%;
+  border-radius: 0;
+}
+
+/* ============================================================
+   深色区块
+   ============================================================ */
+
+.ap-section--dark {
+  background: var(--ap-bg-dark);
+  color: var(--ap-white);
+  padding: var(--ap-s-9) var(--ap-pad-page);
+}
+
+.ap-section--dark .ap-body { color: rgba(255, 255, 255, 0.72); }
+.ap-section--dark .ap-label { color: rgba(255, 255, 255, 0.5); }
+
+/* ============================================================
+   工具类
+   ============================================================ */
+
+.ap-center { text-align: center; }
+.ap-mt-5 { margin-top: var(--ap-s-5); }
+.ap-mt-7 { margin-top: var(--ap-s-7); }
+.ap-mb-7 { margin-bottom: var(--ap-s-7); }

@@ -1,0 +1,198 @@
+/* ============================================================
+   站点外壳与首页区块
+   ============================================================ */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--ap-line);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--s6);
+  min-height: 64px;
+}
+
+.site-header__brand {
+  font-weight: var(--w-semibold);
+  font-size: var(--fs-note);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--ap-ink);
+  white-space: nowrap;
+}
+
+.site-header__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s4);
+  font-size: var(--fs-note);
+}
+
+.site-header__link {
+  text-decoration: none;
+  color: var(--ap-ink-2);
+  padding-block: var(--s2);
+  border-bottom: 1px solid transparent;
+}
+
+.site-header__link:hover {
+  color: var(--ap-ink);
+}
+
+.site-header__link.is-active {
+  color: var(--ap-ink);
+  border-bottom-color: var(--ap-accent);
+}
+
+@media (max-width: 767px) {
+  .site-header__inner {
+    min-height: 56px;
+    gap: var(--s4);
+  }
+
+  .site-header__nav {
+    gap: var(--s3);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .site-header__nav::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.site-footer {
+  padding-block: var(--s8) var(--s7);
+  background: var(--ap-bg-dark);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.site-footer .note {
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.site-footer__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s5);
+  margin-block: var(--s5);
+  font-size: var(--fs-note);
+}
+
+.site-footer__nav a {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+}
+
+.site-footer__meta {
+  margin: 0;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: 88dvh;
+  padding-block: var(--s9);
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s5);
+  /* 用 px 而非 ch：ch 以父级字号计算，在超大标题下会把容器压成一条竖线 */
+  max-width: 880px;
+}
+
+.hero .hero-title {
+  color: var(--ap-white);
+}
+
+/* 强调句独立成行：避免在词组中间折行 */
+.hero-title__accent {
+  display: block;
+}
+
+.hero__lead {
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 560px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  margin-top: var(--s4);
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 76dvh;
+    padding-block: var(--s8);
+  }
+
+  .hero__inner {
+    max-width: none;
+  }
+}
+
+/* ---------- 数据带 ---------- */
+
+.stat-band {
+  padding-block: var(--s8);
+}
+
+.stat-band__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--s5) var(--s4);
+  margin: 0;
+}
+
+.stat-band__item {
+  margin: 0;
+}
+
+.stat-band__item dd {
+  margin: 0;
+}
+
+.stat-band__note {
+  margin-top: var(--s5);
+}
+
+@media (max-width: 767px) {
+  .stat-band__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Bento 单元格 ---------- */
+
+.bento__cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  text-decoration: none;
+  color: inherit;
+  min-height: 132px;
+  border-radius: var(--r-md);
+  /* 灰底区块上用白卡形成层次，而不是同色叠同色 */
+  background: var(--ap-white);
+  transition: background-color 160ms ease;
+}
+
+.bento__cell:hover {
+  background: var(--ap-bg-light-2);
+}
+
+.bento__cell h3 {
+  margin: 0;
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mokoking666.github.io/phantom-blade-zero-guide/sitemap.xml

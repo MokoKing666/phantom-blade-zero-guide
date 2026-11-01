@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "./",
+    "lib": ["ES2023"],
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "types": ["node"],
+    "allowJs": true,
+    "checkJs": true,
+    "paths": {}
+  },
+  "include": [
+    "*.config.ts",
+    "*.config.js",
+    "eslint.config.js",
+    "scripts/**/*.ts",
+    "scripts/**/*.mjs"
+  ]
+}

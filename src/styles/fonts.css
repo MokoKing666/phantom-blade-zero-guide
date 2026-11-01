@@ -1,0 +1,31 @@
+/* ============================================================
+   字体：MiSans 三档
+   三个文件各自声明了独立家族名（MiSans Light / MiSans / MiSans Semibold），
+   且 usWeightClass 是非标准值（250 / 330 / 520）。
+   因此必须统一 font-family 并显式声明 font-weight，否则全部落成 400。
+   路径为相对路径，由 Vite 处理 base 与 hash。
+   ============================================================ */
+
+@font-face {
+  font-family: "PBZ Sans";
+  src: url("../assets/fonts/MiSans-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PBZ Sans";
+  src: url("../assets/fonts/MiSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PBZ Sans";
+  src: url("../assets/fonts/MiSans-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}

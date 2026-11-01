@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="影境手册">
+  <rect width="64" height="64" rx="14" fill="#171918"/>
+  <path d="M20 46 L44 18" stroke="#ffffff" stroke-width="4" stroke-linecap="square"/>
+  <path d="M20 18 L30 18 L20 30 Z" fill="#db404d"/>
+  <circle cx="45" cy="45" r="4" fill="#db404d"/>
+</svg>
